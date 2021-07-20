@@ -14,10 +14,14 @@ app.all('*', function (req, res, next) {
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
   res.header('Access-Control-Allow-Headers', 'Content-Type');
   res.header('Access-Control-Allow-Headers', 'mytoken');
+  // res.setHeader("Access-Control-Allow-Credentials", "true");
+  // res.setHeader("Access-Control-Allow-Methods", "*");
+  // res.setHeader("Access-Control-Allow-Headers", "Content-Type,Access-Token");
+  // res.setHeader("Access-Control-Expose-Headers", "*");
   next();
 });
 app.get('/async1', (req, res) => {
-  res.send('hello1')
+  res.send('hello')
 })
 app.get('/async2', (req, res) => {
   if(req.query.info == 'hello') {

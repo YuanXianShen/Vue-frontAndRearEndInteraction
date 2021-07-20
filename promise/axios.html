@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script type="text/javascript" src="js/axios.js"></script>
+    <script type="text/javascript">
+        // axios.get('http://localhost:3000/adata').then(function (ret) {
+        //     console.log(ret.data);
+        // });
+        // axios.get('http://localhost:3000/axios/123').then(function (ret) {
+        //     console.log(ret.data);
+        // });
+
+        // axios.get('http://localhost:3000/axios', {
+        //     params: {
+        //         id: 111
+        //     }
+        // }).then(function (ret) {
+        //     console.log(ret.data);
+        // })
+
+
+        // axios.post('http://localhost:3000/axios', {
+        //     uname: 'lisi',
+        //     pwd: 123
+        // }).then(function (ret) {
+        //     console.log(ret.data);
+        // })
+
+        // var params = new URLSearchParams();
+        // params.append('uname', 'wangwu');
+        // params.append('pwd', '12233');
+        // axios.post('http://localhost:3000/axios', params).then(function (ret) {
+        //     console.log(ret.data);
+        // })
+
+        // axios.put('http://localhost:3000/axios/123', {
+        //     uname: 'zhangsan',
+        //     pwd: 12212
+        // }).then(function (ret) {
+        //     console.log(ret.data);
+        // })
+        /*
+        axios拦截器
+        */
+
+        axios.interceptors.request.use(config => {
+            // Do something before request is sent
+            config.headers.mytoken = 'nihao'
+            return config;
+        }, error => {
+            // Do something with request error
+            return Promise.reject(error);
+        });
+
+        axios.interceptors.response.use(response => {
+            // Do something before response is sent
+            var data = response.data;
+            return response;
+        }, error => {
+            // Do something with response error
+            return Promise.reject(error);
+        });
+        // 配置请求的基准URL地址
+        axios.defaults.baseURL = 'http://localhost:3000/';
+        // axios.defaults.headers['mytoken'] = 'hello';
+        axios.get('adata').then(function (ret) {
+            console.log(ret.data);
+        })
+    </script>
+</body>
+
+</html>

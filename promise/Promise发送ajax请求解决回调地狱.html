@@ -28,7 +28,7 @@
             });
             return p;
         }
-
+        // 发送多个ajax请求并且保证顺序
         queryData('http://localhost:3000/data')
             .then(function (data) {
                 console.log(data);
